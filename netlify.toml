@@ -1,0 +1,7 @@
+[build]
+    publish = "build"
+    command = "npm run build"
+[[redirects]]
+    from = "https://shop-local.netlify.com/*"
+    to = "https://coachellavalley.shop/:splat"
+    status = 301
