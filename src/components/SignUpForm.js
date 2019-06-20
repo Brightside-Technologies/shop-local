@@ -28,7 +28,13 @@ export default class SignUpForm extends React.Component {
 
     render() {
         const {
-            values: { firstName, lastName, password, email },
+            values: {
+                firstName,
+                lastName,
+                email,
+                password,
+                passwordConfirmation
+            },
             errors,
             touched,
             isSubmitting,
@@ -107,6 +113,30 @@ export default class SignUpForm extends React.Component {
                             helperText={touched.password ? errors.password : ""}
                             error={touched.password && Boolean(errors.password)}
                             value={password}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <TextField
+                            disabled={isSubmitting}
+                            variant="outlined"
+                            id="passwordConfirmation"
+                            name="passwordConfirmation"
+                            label="Confirm your Password"
+                            fullWidth
+                            margin="normal"
+                            type="password"
+                            onBlur={this.handleBlur}
+                            onChange={this.handleChange}
+                            helperText={
+                                touched.passwordConfirmation
+                                    ? errors.passwordConfirmation
+                                    : ""
+                            }
+                            error={
+                                touched.passwordConfirmation &&
+                                Boolean(errors.passwordConfirmation)
+                            }
+                            value={passwordConfirmation}
                         />
                     </Grid>
                 </Grid>

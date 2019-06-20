@@ -10,6 +10,7 @@ import { styled } from "@material-ui/styles";
 import { withStyles } from "@material-ui/core/styles";
 import PublicLayout from "../containers/PublicLayout";
 import SignUpForm from "../components/SignUpForm";
+import { SIGNUP_VALIDATION_SCHEMA } from "../constants/schemaValidations";
 
 const RootGrid = styled(Grid)({
     height: "100%"
@@ -39,13 +40,14 @@ function SignUpPage({ classes }) {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
+        passwordConfirmation: ""
     };
 
     return (
         <PublicLayout>
             <RootGrid container justify="center" alignItems="center">
-                <Grid item>
+                <Grid item xs={12} md={6}>
                     <Card>
                         <CardContent>
                             <div className={classes.cardHeader}>
@@ -62,7 +64,7 @@ function SignUpPage({ classes }) {
                                 validateOnBlur
                                 render={props => <SignUpForm {...props} />}
                                 initialValues={initialValues}
-                                // validationSchema={SIGNUP_VALIDATION_SCHEMA}
+                                validationSchema={SIGNUP_VALIDATION_SCHEMA}
                             />
                         </CardContent>
                     </Card>
