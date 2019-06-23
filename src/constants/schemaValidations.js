@@ -16,4 +16,11 @@ const SIGNUP_VALIDATION_SCHEMA = Yup.object({
         .required("Email is required")
 });
 
-export { SIGNUP_VALIDATION_SCHEMA };
+const LOGIN_VALIDATION_SCHEMA = Yup.object({
+    email: Yup.string()
+        .email("Enter a valid email")
+        .required("Email is required"),
+    password: Yup.string().required("Password is required")
+});
+
+export { SIGNUP_VALIDATION_SCHEMA, LOGIN_VALIDATION_SCHEMA };
