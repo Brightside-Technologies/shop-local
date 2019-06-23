@@ -11,6 +11,9 @@ import { withStyles } from "@material-ui/core/styles";
 import PublicLayout from "../containers/PublicLayout";
 import SignUpForm from "../components/SignUpForm";
 import { SIGNUP_VALIDATION_SCHEMA } from "../constants/schemaValidations";
+import Auth from "../api/auth.api";
+
+const auth = new Auth();
 
 const RootGrid = styled(Grid)({
     height: "100%"
@@ -33,7 +36,9 @@ function SignUpPage({ classes }) {
     function handleSubmit(data, formikProps) {
         const { firstName, lastName, email, password } = data;
         const { setSubmitting } = formikProps;
-        console.log("SIGN UP");
+        console.log("SIGN UP", email);
+        const response = auth.signUpWithEmailAndPassword({ email, password });
+        console.log("RESPONSE", response);
     }
 
     const initialValues = {
