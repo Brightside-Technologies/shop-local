@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Redirect } from "react-router-dom";
 import { Formik } from "formik";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -32,13 +33,25 @@ const styles = theme => ({
     }
 });
 
-function LoginPage({ classes }) {
-    function handleSubmit(data, formikProps) {
+function LoginPage({ classes, history, ...rest }) {
+    //     if (userIsLoggedIn) {
+    //         return <Redirect to="/home" />;
+    // }
+    async function handleSubmit(data, formikProps) {
         const { email, password } = data;
         const { setSubmitting } = formikProps;
-        console.log("LOGIN", email);
-        // const response = auth.loginWithEmailAndPassword({ email, password });
-        // console.log("RESPONSE", response);
+        try {
+            const response = await auth.signInWithEmailAndPassword({
+                email,
+                password
+            });
+            console.log("RESPONSE", response);
+            setSubmitting(false);
+            history.push("/home");
+        } catch (error) {
+            setSubmitting(false);
+            console.log("ERROR", error);
+        }
     }
 
     const initialValues = {
