@@ -16,7 +16,15 @@ export default function Auth() {
             .catch(error => Promise.reject(error));
     }
 
+    function signInWithEmailAndPassword({ email, password }) {
+        return authRef()
+            .signInWithEmailAndPassword(email, password)
+            .then(response => console.log(response))
+            .catch(error => Promise.reject(error));
+    }
+
     return Object.freeze({
-        signUpWithEmailAndPassword
+        signUpWithEmailAndPassword,
+        signInWithEmailAndPassword
     });
 }

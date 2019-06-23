@@ -10,6 +10,7 @@ import theme from "../constants/theme";
 import NotFound from "../pages/NotFound";
 import HomePage from "../pages/Home";
 import SignUpPage from "../pages/SignUp";
+import LoginPage from "../pages/Login";
 
 function App() {
     return (
@@ -17,8 +18,9 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        <Redirect to="/signup" />
+                        <Redirect to="/login" />
                     </Route>
+                    <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/signup" component={SignUpPage} />
                     <Route exact path="/home" component={HomePage} />
                     <Route component={NotFound} />

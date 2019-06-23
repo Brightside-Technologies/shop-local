@@ -1,89 +1,90 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { Formik } from "formik";
 import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import Avatar from "@material-ui/core/Avatar";
+import { styled } from "@material-ui/styles";
 import { withStyles } from "@material-ui/core/styles";
-import Logo from "../assets/logo.png";
 import PublicLayout from "../containers/PublicLayout";
-import Login from "../components/Login/index";
-import { useAuthenticationContext } from "../components/AuthenticationProvider";
+import LoginForm from "../components/LoginForm";
+import { LOGIN_VALIDATION_SCHEMA } from "../constants/schemaValidations";
+import Auth from "../api/auth.api";
+
+const auth = new Auth();
+
+const RootGrid = styled(Grid)({
+    height: "100%"
+});
 
 const styles = theme => ({
-    root: {
-        height: "100%",
-        padding: "0.5rem"
+    cardHeader: {
+        marginTop: "1rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
     },
-    gridItem: {
-        margin: "0.5rem 0 0.5rem 0"
-    },
-    logo: {
-        width: 300,
-        [theme.breakpoints.down("sm")]: {
-            width: 200
-        }
-    },
-    appName: {
-        [theme.breakpoints.down("sm")]: {
-            fontSize: theme.typography.h5.fontSize
-        }
+    avatar: {
+        margin: theme.spacing.unit,
+        backgroundColor: theme.palette.secondary.main
     }
 });
 
-function LoginPage(props) {
-    const { token } = useAuthenticationContext();
-    const { classes } = props;
-
-    if (token) {
-        return <Redirect to="/dashboard" />;
+function LoginPage({ classes, history, ...rest }) {
+    //     if (userIsLoggedIn) {
+    //         return <Redirect to="/home" />;
+    // }
+    async function handleSubmit(data, formikProps) {
+        const { email, password } = data;
+        const { setSubmitting } = formikProps;
+        try {
+            const response = await auth.signInWithEmailAndPassword({
+                email,
+                password
+            });
+            console.log("RESPONSE", response);
+            setSubmitting(false);
+            history.push("/home");
+        } catch (error) {
+            setSubmitting(false);
+            console.log("ERROR", error);
+        }
     }
+
+    const initialValues = {
+        email: "",
+        password: ""
+    };
 
     return (
         <PublicLayout>
-            <Grid
-                className={classes.root}
-                container
-                direction="column"
-                justify="center">
-                <Grid
-                    className={classes.gridItem}
-                    item
-                    container
-                    justify="center">
-                    <Grid item>
-                        <img
-                            className={classes.logo}
-                            alt="Patient Care Analytics"
-                            src={Logo}
-                        />
-                    </Grid>
+            <RootGrid container justify="center" alignItems="center">
+                <Grid item xs={12} md={6}>
+                    <Card>
+                        <CardContent>
+                            <div className={classes.cardHeader}>
+                                <Avatar className={classes.avatar}>
+                                    <LockOutlinedIcon />
+                                </Avatar>
+                                <Typography component="h1" variant="h5">
+                                    Login
+                                </Typography>
+                            </div>
+
+                            <Formik
+                                onSubmit={handleSubmit}
+                                validateOnBlur
+                                render={props => <LoginForm {...props} />}
+                                initialValues={initialValues}
+                                validationSchema={LOGIN_VALIDATION_SCHEMA}
+                            />
+                        </CardContent>
+                    </Card>
                 </Grid>
-                <Grid className={classes.gridItem} item>
-                    <Typography align="center" variant="h6">
-                        Welcome to
-                    </Typography>
-                    <Typography
-                        className={classes.appName}
-                        align="center"
-                        variant="h4">
-                        Labor Management Portal
-                    </Typography>
-                </Grid>
-                <Grid className={classes.gridItem} item>
-                    <Login />
-                </Grid>
-                <Grid
-                    className={classes.gridItem}
-                    item
-                    container
-                    justify="center">
-                    <Grid item>
-                        <Button component={Link} to="/forgot-password">
-                            Forgot Password
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Grid>
+            </RootGrid>
         </PublicLayout>
     );
 }
