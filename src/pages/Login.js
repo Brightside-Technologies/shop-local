@@ -13,6 +13,7 @@ import PublicLayout from "../containers/PublicLayout";
 import LoginForm from "../components/LoginForm";
 import { LOGIN_VALIDATION_SCHEMA } from "../constants/schemaValidations";
 import Auth from "../api/auth.api";
+import { useUserContext } from "../components/UserProvider";
 
 const auth = new Auth();
 
@@ -33,19 +34,23 @@ const styles = theme => ({
     }
 });
 
-function LoginPage({ classes, history, ...rest }) {
-    //     if (userIsLoggedIn) {
-    //         return <Redirect to="/home" />;
-    // }
+function LoginPage({ classes, history }) {
+    console.log("LOGIN");
+    const userContext = useUserContext();
+    const { user, isUserInitialized } = userContext;
+
+    if (isUserInitialized && user) {
+        return <Redirect to="/home" />;
+    }
+
     async function handleSubmit(data, formikProps) {
         const { email, password } = data;
         const { setSubmitting } = formikProps;
         try {
-            const response = await auth.signInWithEmailAndPassword({
+            await auth.signInWithEmailAndPassword({
                 email,
                 password
             });
-            console.log("RESPONSE", response);
             history.push("/home");
         } catch (error) {
             console.log("ERROR", error);

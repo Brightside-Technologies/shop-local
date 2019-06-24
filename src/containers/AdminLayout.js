@@ -30,13 +30,16 @@ const styles = theme => ({
 });
 
 function Layout(props) {
+    const { children, classes } = props;
+
     const userContext = useUserContext();
     const { user, isUserInitialized } = userContext;
 
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
     const [isFilterDrawerOpen, setFilterDrawerOpen] = React.useState(false);
-    const { children, classes } = props;
 
+    console.log("user", user);
+    console.log("isUserInitialized", isUserInitialized);
     if (isUserInitialized && !user) return <Redirect to="/login" />;
 
     return (

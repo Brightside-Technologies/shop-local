@@ -12,6 +12,9 @@ import LogoutIcon from "@material-ui/icons/PowerSettingsNew";
 import { useTheme } from "@material-ui/styles";
 import { unstable_useMediaQuery as useMediaQuery } from "@material-ui/core/useMediaQuery";
 import SidebarLink from "./SidebarLink";
+import Auth from "../api/auth.api";
+
+const authApi = new Auth();
 
 const drawerWidth = 240;
 
@@ -63,9 +66,13 @@ const styles = theme => ({
     }
 });
 
-function Sidebar({ classes, isOpen, toggleDrawer, location, ...otherProps }) {
+function Sidebar({ classes, isOpen, toggleDrawer, location }) {
     const theme = useTheme();
     const isScreenSmall = useMediaQuery(theme.breakpoints.down("sm"));
+
+    function onSignOut() {
+        authApi.signOut();
+    }
 
     const structure = [
         { id: 0, label: "Home", link: "/home", icon: <HomeIcon /> },
@@ -80,6 +87,7 @@ function Sidebar({ classes, isOpen, toggleDrawer, location, ...otherProps }) {
         {
             id: 3,
             label: "Logout",
+            onClick: () => onSignOut(),
             icon: <LogoutIcon />
         }
         // {

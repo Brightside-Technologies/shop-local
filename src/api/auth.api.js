@@ -15,8 +15,13 @@ export default function Auth() {
             .catch(error => Promise.reject(error));
     }
 
+    function signOut() {
+        return authRef().signOut();
+    }
+
     return Object.freeze({
         signUpWithEmailAndPassword,
-        signInWithEmailAndPassword
+        signInWithEmailAndPassword,
+        signOut
     });
 }
