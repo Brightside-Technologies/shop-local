@@ -8,6 +8,7 @@
         "class-methods-use-this": 0,
         "import/no-named-as-default": 0,
         "no-unused-vars": [1],
+        "import/prefer-default-export": [1],
         "react/jsx-filename-extension": [
             "error",
             {
