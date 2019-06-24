@@ -33,12 +33,21 @@ const styles = theme => ({
 });
 
 function SignUpPage({ classes }) {
-    function handleSubmit(data, formikProps) {
+    async function handleSubmit(data, formikProps) {
         const { firstName, lastName, email, password } = data;
         const { setSubmitting } = formikProps;
-        console.log("SIGN UP", email);
-        const response = auth.signUpWithEmailAndPassword({ email, password });
-        console.log("RESPONSE", response);
+        const signUpResponse = await auth.signUpWithEmailAndPassword({
+            email,
+            password
+        });
+        console.log("signUpResponse", signUpResponse);
+        const createUserResponse = await auth.createUser({
+            firstName,
+            lastName,
+            email
+        });
+        console.log("createUserResponse", createUserResponse);
+        setSubmitting(false);
     }
 
     const initialValues = {

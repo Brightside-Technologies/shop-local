@@ -12,7 +12,6 @@ export default function Auth() {
         return authRef()
             .createUserWithEmailAndPassword(email, password)
             .then(response => console.log(response))
-            .then(() => createUser())
             .catch(error => Promise.reject(error));
     }
 
@@ -24,6 +23,7 @@ export default function Auth() {
     }
 
     return Object.freeze({
+        createUser,
         signUpWithEmailAndPassword,
         signInWithEmailAndPassword
     });

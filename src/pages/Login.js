@@ -46,12 +46,11 @@ function LoginPage({ classes, history, ...rest }) {
                 password
             });
             console.log("RESPONSE", response);
-            setSubmitting(false);
             history.push("/home");
         } catch (error) {
-            setSubmitting(false);
             console.log("ERROR", error);
         }
+        setSubmitting(false);
     }
 
     const initialValues = {
