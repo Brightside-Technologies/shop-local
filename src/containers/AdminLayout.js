@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import { withStyles, CssBaseline } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
+import UserProvider from "../components/UserProvider";
 
 const styles = theme => ({
     root: {
@@ -30,10 +31,10 @@ const styles = theme => ({
 
 function Layout(props) {
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-    const [isFilterDrawerOpen, setFilterDrawerOpen] = useState(false);
+    const [isFilterDrawerOpen, setFilterDrawerOpen] = React.useState(false);
     const { children, classes } = props;
     return (
-        <Fragment>
+        <UserProvider>
             <CssBaseline />
             <div className={classes.root}>
                 <Navbar
@@ -49,7 +50,7 @@ function Layout(props) {
                 </main>
             </div>
             {/* <Footer /> */}
-        </Fragment>
+        </UserProvider>
     );
 }
 

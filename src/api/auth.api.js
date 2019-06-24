@@ -1,13 +1,6 @@
 import { authRef } from "../constants/firebase";
 
 export default function Auth() {
-    function createUser() {
-        return new Promise((resolve, reject) => {
-            console.log("TODO: CREATE USER IN DB");
-            return setTimeout(resolve(true), 1000);
-        });
-    }
-
     function signUpWithEmailAndPassword({ email, password }) {
         return authRef()
             .createUserWithEmailAndPassword(email, password)
@@ -23,7 +16,6 @@ export default function Auth() {
     }
 
     return Object.freeze({
-        createUser,
         signUpWithEmailAndPassword,
         signInWithEmailAndPassword
     });

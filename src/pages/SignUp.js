@@ -12,8 +12,10 @@ import PublicLayout from "../containers/PublicLayout";
 import SignUpForm from "../components/SignUpForm";
 import { SIGNUP_VALIDATION_SCHEMA } from "../constants/schemaValidations";
 import Auth from "../api/auth.api";
+import User from "../api/user.api";
 
 const auth = new Auth();
+const user = new User();
 
 const RootGrid = styled(Grid)({
     height: "100%"
@@ -41,7 +43,7 @@ function SignUpPage({ classes }) {
             password
         });
         console.log("signUpResponse", signUpResponse);
-        const createUserResponse = await auth.createUser({
+        const createUserResponse = await user.create({
             firstName,
             lastName,
             email
