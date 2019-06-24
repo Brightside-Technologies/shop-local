@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
-import UserProvider from "../components/UserProvider";
+import { useUserContext } from "../components/UserProvider";
 
 const styles = theme => ({
     root: {
@@ -30,11 +30,17 @@ const styles = theme => ({
 });
 
 function Layout(props) {
+    const userContext = useUserContext();
+    const { user, isUserInitialized } = userContext;
+
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
     const [isFilterDrawerOpen, setFilterDrawerOpen] = React.useState(false);
     const { children, classes } = props;
+
+    if (isUserInitialized && !user) return <Redirect to="/login" />;
+
     return (
-        <UserProvider>
+        <React.Fragment>
             <CssBaseline />
             <div className={classes.root}>
                 <Navbar
@@ -50,7 +56,7 @@ function Layout(props) {
                 </main>
             </div>
             {/* <Footer /> */}
-        </UserProvider>
+        </React.Fragment>
     );
 }
 

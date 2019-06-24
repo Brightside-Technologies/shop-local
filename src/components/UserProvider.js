@@ -15,9 +15,11 @@ function useUserContext() {
 }
 
 function UserProvider({ children }) {
-    const authState = useAuthState();
+    const { isInitialized, currentUser } = useAuthState();
 
     const [user, setUser] = React.useState(null);
+    const [isUserInitialized, setIsUserInitialized] = React.useState(null);
+
     React.useEffect(() => {
         async function getUser() {
             const {
@@ -26,7 +28,7 @@ function UserProvider({ children }) {
                 photoUrl,
                 emailVerified,
                 uid
-            } = authState;
+            } = currentUser;
 
             const dbUser = await userApi.get("SOME ID");
 
@@ -38,18 +40,22 @@ function UserProvider({ children }) {
                 uid
             };
             setUser(userObject);
+            setIsUserInitialized(isInitialized);
         }
-        if (authState) {
+        if (currentUser) {
             getUser();
+        } else {
+            setIsUserInitialized(isInitialized);
         }
-    }, [authState]);
+    }, [currentUser, isInitialized]);
 
     return (
         <UserContext.Provider
             value={{
-                user
+                user,
+                isUserInitialized
             }}>
-            {children}
+            {isUserInitialized && children}
         </UserContext.Provider>
     );
 }
