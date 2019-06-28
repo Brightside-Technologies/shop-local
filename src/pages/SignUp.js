@@ -1,4 +1,5 @@
 import React from "react";
+import to from "await-to-js";
 import { Formik } from "formik";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -36,19 +37,38 @@ const styles = theme => ({
 
 function SignUpPage({ classes }) {
     async function handleSubmit(data, formikProps) {
+        let err;
+        let signUpResponse;
+        let updateDisplayNameResponse;
+        let createFaunaUserResponse;
+
         const { firstName, lastName, email, password } = data;
         const { setSubmitting } = formikProps;
-        const signUpResponse = await auth.signUpWithEmailAndPassword({
-            email,
-            password
-        });
+
+        [err, signUpResponse] = await to(
+            auth.signUpWithEmailAndPassword({
+                email,
+                password
+            })
+        );
         console.log("signUpResponse", signUpResponse);
-        const createUserResponse = await user.create({
-            firstName,
-            lastName,
-            email
-        });
-        console.log("createUserResponse", createUserResponse);
+        if (err) throw new Error(err);
+
+        [err, updateDisplayNameResponse] = await to(
+            user.updateFirebaseDisplayName(`${firstName} ${lastName}`)
+        );
+        if (err) throw new Error(err);
+
+        [err, createFaunaUserResponse] = await to(
+            user.create({
+                firstName,
+                lastName,
+                email
+            })
+        );
+        console.log("createFaunaUserResponse", createUserResponse);
+        if (err) throw new Error(err);
+
         setSubmitting(false);
     }
 

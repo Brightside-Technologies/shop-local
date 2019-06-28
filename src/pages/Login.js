@@ -1,4 +1,5 @@
 import React from "react";
+import to from "await-to-js";
 import { Link, Redirect } from "react-router-dom";
 import { Formik } from "formik";
 import Grid from "@material-ui/core/Grid";
@@ -46,15 +47,17 @@ function LoginPage({ classes, history }) {
     async function handleSubmit(data, formikProps) {
         const { email, password } = data;
         const { setSubmitting } = formikProps;
-        try {
-            await auth.signInWithEmailAndPassword({
+
+        const [err] = await to(
+            auth.signInWithEmailAndPassword({
                 email,
                 password
-            });
-            history.push("/home");
-        } catch (error) {
-            console.log("ERROR", error);
-        }
+            })
+        );
+        if (err) throw new Error(err);
+
+        history.push("/home");
+
         setSubmitting(false);
     }
 

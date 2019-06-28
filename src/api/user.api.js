@@ -1,4 +1,18 @@
+import { firebaseUser } from "../constants/firebase";
+
 export default function User() {
+    function updateFirebaseDisplayName(displayName) {
+        return firebaseUser.updateProfile({
+            displayName
+        });
+    }
+
+    function updateFirebasePhoto(photoURL) {
+        return firebaseUser.updateProfile({
+            photoURL
+        });
+    }
+
     function create() {
         return new Promise((resolve, reject) => {
             console.log("TODO: CREATE USER IN DB");
@@ -15,6 +29,8 @@ export default function User() {
 
     return Object.freeze({
         create,
-        get
+        get,
+        updateFirebaseDisplayName,
+        updateFirebasePhoto
     });
 }
