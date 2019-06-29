@@ -1,4 +1,4 @@
-import { authRef } from "../constants/firebase";
+import { authRef, firebaseUser } from "../constants/firebase";
 
 export default function Auth() {
     function signUpWithEmailAndPassword({ email, password }) {
@@ -19,9 +19,14 @@ export default function Auth() {
         return authRef().signOut();
     }
 
+    function updatePassword(newPassword) {
+        return firebaseUser.updatePassword(newPassword);
+    }
+
     return Object.freeze({
         signUpWithEmailAndPassword,
         signInWithEmailAndPassword,
-        signOut
+        signOut,
+        updatePassword
     });
 }

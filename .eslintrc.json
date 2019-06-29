@@ -9,6 +9,7 @@
         "import/no-named-as-default": 0,
         "no-unused-vars": [1],
         "import/prefer-default-export": [1],
+        "prefer-const": [1],
         "react/jsx-filename-extension": [
             "error",
             {
