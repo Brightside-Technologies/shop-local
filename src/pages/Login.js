@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -13,7 +13,6 @@ import PublicLayout from "../containers/PublicLayout";
 import LoginForm from "../components/LoginForm";
 import { LOGIN_VALIDATION_SCHEMA } from "../constants/schemaValidations";
 import Auth from "../api/auth.api";
-import { useUserContext } from "../components/UserProvider";
 
 const auth = new Auth();
 
@@ -35,14 +34,6 @@ const styles = theme => ({
 });
 
 function LoginPage({ classes, history }) {
-    console.log("LOGIN");
-    const userContext = useUserContext();
-    const { user, isUserInitialized } = userContext;
-
-    if (isUserInitialized && user) {
-        return <Redirect to="/home" />;
-    }
-
     async function handleSubmit(data, formikProps) {
         const { email, password } = data;
         const { setSubmitting } = formikProps;

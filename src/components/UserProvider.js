@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import useAuthState from "../hooks/useAuthState";
 import User from "../api/user.api";
 
@@ -15,10 +16,8 @@ function useUserContext() {
 }
 
 function UserProvider({ children }) {
-    const { isInitialized, currentUser } = useAuthState();
-
-    const [user, setUser] = React.useState(null);
-    const [isUserInitialized, setIsUserInitialized] = React.useState(null);
+    const { authenticatedUser, initializing } = useAuthState();
+    const [currentUser, setCurrentUser] = React.useState({});
 
     React.useEffect(() => {
         async function getUser() {
@@ -28,7 +27,7 @@ function UserProvider({ children }) {
                 photoUrl,
                 emailVerified,
                 uid
-            } = currentUser;
+            } = authenticatedUser;
 
             const dbUser = await userApi.get("SOME ID");
 
@@ -38,24 +37,25 @@ function UserProvider({ children }) {
                 photoUrl,
                 emailVerified,
                 uid
+                // ...dbUser
             };
-            setUser(userObject);
-            setIsUserInitialized(isInitialized);
+            setCurrentUser(userObject);
         }
-        if (currentUser) {
+        if (authenticatedUser) {
             getUser();
         } else {
-            setIsUserInitialized(isInitialized);
+            setCurrentUser(authenticatedUser);
         }
-    }, [currentUser, isInitialized]);
+    }, [authenticatedUser]);
+
+    if (!initializing && !authenticatedUser) return <Redirect to="/login" />;
 
     return (
         <UserContext.Provider
             value={{
-                user,
-                isUserInitialized
+                currentUser
             }}>
-            {isUserInitialized && children}
+            {!initializing && children}
         </UserContext.Provider>
     );
 }

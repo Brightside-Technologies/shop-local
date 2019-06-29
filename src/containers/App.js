@@ -17,17 +17,17 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Router>
-                <UserProvider>
-                    <Switch>
-                        <Route exact path="/">
-                            <Redirect to="/login" />
-                        </Route>
-                        <Route exact path="/login" component={LoginPage} />
-                        <Route exact path="/signup" component={SignUpPage} />
+                <Switch>
+                    <Route exact path="/">
+                        <Redirect to="/login" />
+                    </Route>
+                    <Route exact path="/login" component={LoginPage} />
+                    <Route exact path="/signup" component={SignUpPage} />
+                    <UserProvider>
                         <Route exact path="/home" component={HomePage} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </UserProvider>
+                    </UserProvider>
+                    <Route component={NotFound} />
+                </Switch>
             </Router>
         </ThemeProvider>
     );
