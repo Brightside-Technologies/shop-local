@@ -12,6 +12,7 @@ import LogoutIcon from "@material-ui/icons/PowerSettingsNew";
 import { useTheme } from "@material-ui/styles";
 import { unstable_useMediaQuery as useMediaQuery } from "@material-ui/core/useMediaQuery";
 import SidebarLink from "./SidebarLink";
+import ProfileAvatar from "./ProfileAvatar";
 import Auth from "../api/auth.api";
 
 const authApi = new Auth();
@@ -132,9 +133,7 @@ function Sidebar({ classes, isOpen, toggleDrawer, location }) {
                     <ArrowBackIcon />
                 </IconButton>
             </div>
-            <Typography align="center" noWrap variant="h6" gutterBottom>
-                {`User`}
-            </Typography>
+            <ProfileAvatar />
             <List className={classes.sidebarList}>
                 {structure.map(link => (
                     <SidebarLink

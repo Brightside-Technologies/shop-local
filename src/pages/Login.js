@@ -60,7 +60,7 @@ function LoginPage({ classes, history }) {
     return (
         <PublicLayout>
             <RootGrid container justify="center" alignItems="center">
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={6} lg={4}>
                     <Card>
                         <CardContent>
                             <div className={classes.cardHeader}>
