@@ -10,7 +10,7 @@ import ProfileIcon from "@material-ui/icons/AccountCircle";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import LogoutIcon from "@material-ui/icons/PowerSettingsNew";
 import { useTheme } from "@material-ui/styles";
-import { unstable_useMediaQuery as useMediaQuery } from "@material-ui/core/useMediaQuery";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import SidebarLink from "./SidebarLink";
 import ProfileAvatar from "./ProfileAvatar";
 import Auth from "../api/auth.api";
@@ -38,7 +38,7 @@ const styles = theme => ({
             duration: theme.transitions.duration.leavingScreen
         }),
         overflowX: "hidden",
-        width: theme.spacing.unit * 7 + 40,
+        width: theme.spacing(7) + 40,
         [theme.breakpoints.down("sm")]: {
             width: drawerWidth
         }

@@ -11,17 +11,26 @@ body {
 }
 
 #root {
-    flex-direction: column;
-    height: 100% !important;
-    // z-index: 1;
+    // flex-direction: column;
+    // height: 100% !important;
+    // // z-index: 1;
+    // display: flex;
+    // width: 100%;
     display: flex;
-    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 main {
-    flex: 1;
-    // flex-grow: 1
-    // min-height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    // flex: 1;
+    // // flex-grow: 1
+    // // min-height: 100%;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }

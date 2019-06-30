@@ -16,9 +16,9 @@ import classnames from "classnames";
 const styles = theme => ({
     link: {
         textDecoration: "none",
-        paddingLeft: theme.spacing.unit * 4.5,
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
+        paddingLeft: theme.spacing(4.5),
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
         "&:hover, &:focus": {
             backgroundColor: theme.palette.background.light
         }
@@ -28,14 +28,14 @@ const styles = theme => ({
     },
     linkNested: {
         paddingLeft: 0,
-        paddingTop: theme.spacing.unit,
-        paddingBottom: theme.spacing.unit,
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(1),
         "&:hover, &:focus": {
             backgroundColor: "#FFFFFF"
         }
     },
     linkIcon: {
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(1),
         color: `${theme.palette.text.secondary}99`,
         transition: theme.transitions.create("color"),
         width: 24,
@@ -58,16 +58,16 @@ const styles = theme => ({
         opacity: 0
     },
     nestedList: {
-        paddingLeft: theme.spacing.unit * 4.5 + 40
+        paddingLeft: theme.spacing(4.5) + 40
     },
     sectionTitle: {
-        marginLeft: theme.spacing.unit * 4.5,
-        marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit * 2
+        marginLeft: theme.spacing(4.5),
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2)
     },
     divider: {
-        marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit * 4,
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(4),
         height: 1,
         backgroundColor: "#D8D8D880"
     }

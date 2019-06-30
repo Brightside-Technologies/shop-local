@@ -22,7 +22,7 @@ function Footer(props) {
     const { classes } = props;
     return (
         <footer className={`${classes.root}`}>
-            <Grid container spacing={24} justify="flex-end">
+            <Grid container spacing={5} justify="flex-end">
                 <Grid item>
                     <Typography
                         variant="caption"

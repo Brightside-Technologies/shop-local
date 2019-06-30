@@ -16,7 +16,7 @@ const styles = theme => ({
         // padding: theme.spacing.unit * 3
     },
     contentShift: {
-        width: `calc(100vw - ${240 + theme.spacing.unit * 6}px)`,
+        width: `calc(100vw - ${240 + theme.spacing(6)}px)`,
         transition: theme.transitions.create(["width", "margin"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen

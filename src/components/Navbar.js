@@ -14,8 +14,8 @@ const styles = theme => ({
         zIndex: theme.zIndex.drawer + 1
     },
     toolbar: {
-        paddingLeft: theme.spacing.unit * 2,
-        paddingRight: theme.spacing.unit * 2
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2)
     },
     grow: {
         flexGrow: 1

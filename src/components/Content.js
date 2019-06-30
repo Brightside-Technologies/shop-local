@@ -7,7 +7,7 @@ const Div = ({ className, children }) => (
 );
 
 const StyledDiv = styled(Div)(theme => ({
-    padding: theme.spacing.unit * 3
+    padding: theme.spacing(3)
 }));
 
 export default function Content(props) {

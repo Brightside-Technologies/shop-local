@@ -38,7 +38,7 @@ export default class LoginForm extends React.Component {
 
         return (
             <form noValidate onSubmit={this.handleSubmit}>
-                <Grid container spacing={8}>
+                <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <TextField
                             disabled={isSubmitting}

@@ -5,7 +5,7 @@ import cyan from "@material-ui/core/colors/cyan";
 const theme = createMuiTheme({
     palette: {
         primary: { main: grey[900] },
-        secondary: cyan,
+        secondary: { main: cyan[500] },
         background: {
             default: "#F6F7FF",
             light: "#F3F5FF"

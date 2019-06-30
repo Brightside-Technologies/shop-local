@@ -44,7 +44,7 @@ export default class SignUpForm extends React.Component {
 
         return (
             <form noValidate onSubmit={this.handleSubmit}>
-                <Grid container spacing={8}>
+                <Grid container spacing={1}>
                     <Grid item xs={12} sm={6}>
                         <TextField
                             disabled={isSubmitting}

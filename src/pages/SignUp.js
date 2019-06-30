@@ -30,7 +30,7 @@ const styles = theme => ({
         alignItems: "center"
     },
     avatar: {
-        margin: theme.spacing.unit,
+        margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main
     }
 });
@@ -82,9 +82,13 @@ function SignUpPage({ classes }) {
 
     return (
         <PublicLayout>
-            <RootGrid container justify="center" alignItems="center">
-                <Grid item xs={12} md={6}>
-                    <Card>
+            <RootGrid
+                spacing={1}
+                container
+                justify="center"
+                alignItems="center">
+                <Grid item xs={12} md={6} spacing={1}>
+                    <Card raised>
                         <CardContent>
                             <div className={classes.cardHeader}>
                                 <Avatar className={classes.avatar}>

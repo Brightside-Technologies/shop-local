@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./bootstrap";
+// import "./bootstrap";
 import Loading from "./components/Loading";
 import registerServiceWorker from "./registerServiceWorker";
 import "./index.scss";
