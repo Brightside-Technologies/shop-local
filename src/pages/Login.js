@@ -62,7 +62,7 @@ function LoginPage({ classes, history }) {
                 container
                 justify="center"
                 alignItems="center">
-                <Grid spacing={1} item xs={12} md={6} lg={4} xl={4}>
+                <Grid item xs={12} md={6} lg={4} xl={4}>
                     <div className={classes.cardHeader}>
                         <Avatar className={classes.avatar}>
                             <LockOutlinedIcon />

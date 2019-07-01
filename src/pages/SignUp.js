@@ -34,7 +34,7 @@ const styles = theme => ({
     }
 });
 
-function SignUpPage({ classes }) {
+function SignUpPage({ classes, history }) {
     async function handleSubmit(data, formikProps) {
         let err;
         let signUpResponse;
@@ -69,6 +69,8 @@ function SignUpPage({ classes }) {
         if (err) throw new Error(err);
 
         setSubmitting(false);
+
+        history.push("/home");
     }
 
     const initialValues = {
@@ -86,7 +88,7 @@ function SignUpPage({ classes }) {
                 container
                 justify="center"
                 alignItems="center">
-                <Grid item xs={12} md={6} lg={4} spacing={1}>
+                <Grid item xs={12} md={6} lg={4}>
                     <div className={classes.cardHeader}>
                         <Avatar className={classes.avatar}>
                             <LockOutlinedIcon />

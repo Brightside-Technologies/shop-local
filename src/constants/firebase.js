@@ -12,4 +12,3 @@ firebase.initializeApp({
 });
 
 export const authRef = firebase.auth;
-export const firebaseUser = firebase.auth().currentUser;

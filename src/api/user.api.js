@@ -1,14 +1,14 @@
-import { firebaseUser } from "../constants/firebase";
+import { authRef } from "../constants/firebase";
 
 export default function User() {
     function updateFirebaseDisplayName(displayName) {
-        return firebaseUser.updateProfile({
+        return authRef().currentUser.updateProfile({
             displayName
         });
     }
 
     function updateFirebasePhoto(photoURL) {
-        return firebaseUser.updateProfile({
+        return authRef().currentUser.updateProfile({
             photoURL
         });
     }
