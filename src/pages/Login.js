@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "@material-ui/core/Link";
 import to from "await-to-js";
 import { Formik } from "formik";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
@@ -60,31 +58,38 @@ function LoginPage({ classes, history }) {
     return (
         <PublicLayout>
             <RootGrid
-                spacing={2}
+                spacing={1}
                 container
                 justify="center"
                 alignItems="center">
-                <Grid item xs={12} md={6} lg={4}>
-                    <Card raised>
-                        <CardContent>
-                            <div className={classes.cardHeader}>
-                                <Avatar className={classes.avatar}>
-                                    <LockOutlinedIcon />
-                                </Avatar>
-                                <Typography component="h1" variant="h5">
-                                    Login
-                                </Typography>
-                            </div>
-
-                            <Formik
-                                onSubmit={handleSubmit}
-                                validateOnBlur
-                                render={props => <LoginForm {...props} />}
-                                initialValues={initialValues}
-                                validationSchema={LOGIN_VALIDATION_SCHEMA}
-                            />
-                        </CardContent>
-                    </Card>
+                <Grid spacing={1} item xs={12} md={6} lg={4} xl={4}>
+                    <div className={classes.cardHeader}>
+                        <Avatar className={classes.avatar}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Login
+                        </Typography>
+                    </div>
+                    <Formik
+                        onSubmit={handleSubmit}
+                        validateOnBlur
+                        render={props => <LoginForm {...props} />}
+                        initialValues={initialValues}
+                        validationSchema={LOGIN_VALIDATION_SCHEMA}
+                    />
+                    <Grid container>
+                        <Grid item xs>
+                            <Link href="/" variant="body2">
+                                Forgot password?
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link href="/signup" variant="body2">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </RootGrid>
         </PublicLayout>

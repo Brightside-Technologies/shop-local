@@ -27,11 +27,7 @@ function Footer(props) {
                     <Typography
                         variant="caption"
                         className={`${classes.textUpperCase} ${classes.text}`}>
-                        {`${
-                            process.env.REACT_APP_ENV !== "production"
-                                ? process.env.REACT_APP_ENV
-                                : ""
-                        } v${packageJson.version}`}
+                        {`v${packageJson.version}`}
                     </Typography>
                 </Grid>
             </Grid>

@@ -1,9 +1,8 @@
 import React from "react";
+import Link from "@material-ui/core/Link";
 import to from "await-to-js";
 import { Formik } from "formik";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
@@ -87,27 +86,34 @@ function SignUpPage({ classes }) {
                 container
                 justify="center"
                 alignItems="center">
-                <Grid item xs={12} md={6} spacing={1}>
-                    <Card raised>
-                        <CardContent>
-                            <div className={classes.cardHeader}>
-                                <Avatar className={classes.avatar}>
-                                    <LockOutlinedIcon />
-                                </Avatar>
-                                <Typography component="h1" variant="h5">
-                                    Sign up
-                                </Typography>
-                            </div>
-
-                            <Formik
-                                onSubmit={handleSubmit}
-                                validateOnBlur
-                                render={props => <SignUpForm {...props} />}
-                                initialValues={initialValues}
-                                validationSchema={SIGNUP_VALIDATION_SCHEMA}
-                            />
-                        </CardContent>
-                    </Card>
+                <Grid item xs={12} md={6} lg={4} spacing={1}>
+                    <div className={classes.cardHeader}>
+                        <Avatar className={classes.avatar}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Sign up
+                        </Typography>
+                    </div>
+                    <Formik
+                        onSubmit={handleSubmit}
+                        validateOnBlur
+                        render={props => <SignUpForm {...props} />}
+                        initialValues={initialValues}
+                        validationSchema={SIGNUP_VALIDATION_SCHEMA}
+                    />
+                    <Grid container>
+                        <Grid item xs>
+                            <Link href="/" variant="body2">
+                                Forgot password?
+                            </Link>
+                        </Grid>
+                        <Grid item>
+                            <Link href="/login" variant="body2">
+                                {"Have an account already? Log in"}
+                            </Link>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </RootGrid>
         </PublicLayout>
