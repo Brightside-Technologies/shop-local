@@ -12,6 +12,7 @@
         "faunadb": "^2.6.1",
         "firebase": "^6.2.1",
         "formik": "^1.5.4",
+        "http-proxy-middleware": "^0.19.1",
         "ky": "^0.11.1",
         "prop-types": "^15.7.2",
         "react": "^16.8.6",
@@ -21,6 +22,7 @@
         "yup": "^0.27.0"
     },
     "devDependencies": {
+        "dotenv-webpack": "^1.7.0",
         "eslint-config-airbnb": "^17.1.0",
         "eslint-config-prettier": "^4.1.0",
         "eslint-plugin-import": "^2.17.2",
@@ -29,13 +31,18 @@
         "eslint-plugin-react": "^7.12.4",
         "husky": "^2.2.0",
         "lint-staged": "^8.1.5",
+        "netlify-lambda": "^1.4.13",
         "node-sass": "^4.12.0",
         "prettier": "^1.17.0",
         "source-map-explorer": "^1.8.0"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
+        "start": "npm run start:server && npm run start:app",
+        "start:server": "netlify-lambda serve functions -c ./webpack.functions.js",
+        "start:app": "react-scripts start",
+        "build": "npm run build:functions && npm run build:app",
+        "build:functions": "netlify-lambda build functions",
+        "build:app": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "prettify": "prettier --config .prettierrc --write \"src/**/*.js\"",

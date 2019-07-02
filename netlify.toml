@@ -1,6 +1,7 @@
 [build]
     publish = "build"
     command = "npm run build"
+    functions = "functions-build"
 [[redirects]]
     from = "https://shop-local.netlify.com/*"
     to = "https://coachellavalley.shop/:splat"
