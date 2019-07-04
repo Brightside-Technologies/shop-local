@@ -37,7 +37,6 @@
         "source-map-explorer": "^1.8.0"
     },
     "scripts": {
-        "start": "npm run start:server && npm run start:app",
         "start:server": "netlify-lambda serve functions -c ./webpack.functions.js",
         "start:app": "react-scripts start",
         "build": "npm run build:functions && npm run build:app",

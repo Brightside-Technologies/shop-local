@@ -1,6 +1,14 @@
 function Vendors() {
-    function getByUserId(userId) {
-        return fetch(`/.netlify/functions/vendors-get/${userId}`).then(
+    function getByOwner(ownerId) {
+        return fetch(
+            `/.netlify/functions/vendors-get-by-owner/${ownerId}`
+        ).then(response => {
+            return response.json();
+        });
+    }
+
+    function get(vendorId) {
+        return fetch(`/.netlify/functions/vendors-get/${vendorId}`).then(
             response => {
                 return response.json();
             }
@@ -8,7 +16,8 @@ function Vendors() {
     }
 
     return Object.freeze({
-        getByUserId
+        getByOwner,
+        get
     });
 }
 

@@ -16,7 +16,6 @@ import classnames from "classnames";
 const styles = theme => ({
     link: {
         textDecoration: "none",
-        paddingLeft: theme.spacing(4.5),
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
         "&:hover, &:focus": {
@@ -35,7 +34,6 @@ const styles = theme => ({
         }
     },
     linkIcon: {
-        marginRight: theme.spacing(1),
         color: `${theme.palette.text.secondary}99`,
         transition: theme.transitions.create("color"),
         width: 24,
