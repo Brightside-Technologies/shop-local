@@ -2,6 +2,7 @@ import React from "react";
 import { withStyles, CssBaseline } from "@material-ui/core";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import Content from "../components/Content";
 import Footer from "../components/Footer";
 
 const styles = theme => ({
@@ -12,8 +13,8 @@ const styles = theme => ({
         height: "100%"
     },
     content: {
-        flexGrow: 1
-        // padding: theme.spacing.unit * 3
+        flexGrow: 1,
+        padding: theme.spacing(3)
     },
     contentShift: {
         width: `calc(100vw - ${240 + theme.spacing(6)}px)`,

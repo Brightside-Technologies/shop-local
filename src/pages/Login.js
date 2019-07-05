@@ -16,7 +16,8 @@ import Auth from "../api/auth.api";
 const auth = new Auth();
 
 const RootGrid = styled(Grid)({
-    height: "100%"
+    height: "100%",
+    flexGrow: 1
 });
 
 const styles = theme => ({

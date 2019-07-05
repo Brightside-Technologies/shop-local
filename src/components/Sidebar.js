@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { withStyles, Typography } from "@material-ui/core";
+import { withStyles, Typography, Grid } from "@material-ui/core";
 import Drawer from "@material-ui/core/Drawer";
 import classNames from "classnames";
 import List from "@material-ui/core/List";
@@ -133,7 +133,7 @@ function Sidebar({ classes, isOpen, toggleDrawer, location }) {
                     <ArrowBackIcon />
                 </IconButton>
             </div>
-            <ProfileAvatar />
+            <ProfileAvatar isSidebarOpen={isOpen} />
             <List className={classes.sidebarList}>
                 {structure.map(link => (
                     <SidebarLink
