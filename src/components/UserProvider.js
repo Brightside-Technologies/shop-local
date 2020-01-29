@@ -1,5 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import EmailNotConfirmed from "../pages";
 import useAuthState from "../hooks/useAuthState";
 import User from "../api/user.api";
 
@@ -20,6 +21,7 @@ function UserProvider({ children }) {
     const [currentUser, setCurrentUser] = React.useState({});
 
     React.useEffect(() => {
+        console.log("authenticatedUser", authenticatedUser);
         async function getUser() {
             const {
                 displayName,
@@ -49,13 +51,20 @@ function UserProvider({ children }) {
     }, [authenticatedUser]);
 
     if (!initializing && !authenticatedUser) return <Redirect to="/login" />;
+    // if (
+    //     !initializing &&
+    //     authenticatedUser &&
+    //     !authenticatedUser.emailVerified
+    // ) {
+    //     return <Redirect to="/email-not-verified" />;
+    // }
 
     return (
         <UserContext.Provider
             value={{
                 currentUser
             }}>
-            {!initializing && children}
+            {!initializing && !currentUser.emailVerified && children}
         </UserContext.Provider>
     );
 }

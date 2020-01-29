@@ -23,10 +23,15 @@ export default function Auth() {
         return authRef().currentUser.updatePassword(newPassword);
     }
 
+    function sendEmailVerification() {
+        return authRef().currentUser.sendEmailVerification();
+    }
+
     return Object.freeze({
         signUpWithEmailAndPassword,
         signInWithEmailAndPassword,
         signOut,
-        updatePassword
+        updatePassword,
+        sendEmailVerification
     });
 }

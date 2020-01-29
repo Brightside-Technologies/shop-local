@@ -39,6 +39,7 @@ function SignUpPage({ classes, history }) {
         let err;
         let signUpResponse;
         let updateDisplayNameResponse;
+        let sendEmailVerificationResponse;
         let createFaunaUserResponse;
 
         const { firstName, lastName, email, password } = data;
@@ -56,21 +57,31 @@ function SignUpPage({ classes, history }) {
         [err, updateDisplayNameResponse] = await to(
             user.updateFirebaseDisplayName(`${firstName} ${lastName}`)
         );
+        console.log("updateDisplayNameResponse", updateDisplayNameResponse);
         if (err) throw new Error(err);
 
-        [err, createFaunaUserResponse] = await to(
-            user.create({
-                firstName,
-                lastName,
-                email
-            })
+        [err, sendEmailVerificationResponse] = await to(
+            auth.sendEmailVerification()
         );
-        console.log("createFaunaUserResponse", createFaunaUserResponse);
+        console.log(
+            "sendEmailVerificationResponse",
+            sendEmailVerificationResponse
+        );
         if (err) throw new Error(err);
+
+        // [err, createFaunaUserResponse] = await to(
+        //     user.create({
+        //         firstName,
+        //         lastName,
+        //         email
+        //     })
+        // );
+        // console.log("createFaunaUserResponse", createFaunaUserResponse);
+        // if (err) throw new Error(err);
 
         setSubmitting(false);
 
-        history.push("/home");
+        history.push("/email-verification-sent");
     }
 
     const initialValues = {
